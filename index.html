@@ -104,10 +104,46 @@
       animation: pulse 2s infinite;
       transition: background 0.3s;
       cursor: pointer;
+      border: none;
     }
 
     .botao:hover {
       background: #c27b8f;
+    }
+
+    /* Dropdown */
+    .dropdown {
+      position: relative;
+      display: inline-block;
+    }
+
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      background: #fff;
+      min-width: 220px;
+      box-shadow: 0 6px 12px rgba(0,0,0,0.1);
+      border-radius: 12px;
+      overflow: hidden;
+      z-index: 10;
+      margin-top: 8px;
+    }
+
+    .dropdown-content a {
+      display: block;
+      padding: 12px;
+      text-decoration: none;
+      color: #5c3a46;
+      font-weight: bold;
+      transition: background 0.3s;
+    }
+
+    .dropdown-content a:hover {
+      background: #f7dce6;
+    }
+
+    .dropdown.show .dropdown-content {
+      display: block;
     }
 
     @keyframes fadeInDown {
@@ -130,6 +166,7 @@
       50% { transform: scale(1.05); }
       100% { transform: scale(1); }
     }
+
   </style>
 </head>
 <body>
@@ -150,8 +187,17 @@
       <a onclick="gerarMensagem('Reposicionamento de Furo')">● Reposicionamento de Furo</a>
     </div>
 
-    <!-- Botão normal -->
-    <a href="https://wa.me/5519998346187" target="_blank" class="botao">Marque seu horário!</a>
+    <!-- Botão com dropdown -->
+    <div class="dropdown">
+      <button class="botao" onclick="toggleDropdown()">Marque seu horário!</button>
+      <div id="dropdownMenu" class="dropdown-content">
+        <a onclick="gerarMensagem('Furo Humanizado')">Furo Humanizado</a>
+        <a onclick="gerarMensagem('Bodypiercing')">Bodypiercing</a>
+        <a onclick="gerarMensagem('Cromoterapia Auricular')">Cromoterapia Auricular</a>
+        <a onclick="gerarMensagem('Humanização de Jóias')">Humanização de Jóias</a>
+        <a onclick="gerarMensagem('Reposicionamento de Furo')">Reposicionamento de Furo</a>
+      </div>
+    </div>
 
     <!-- Botão Perguntar Preço -->
     <a onclick="gerarMensagem('todos os serviços')" class="botao">💬 Perguntar Preço</a>
@@ -180,6 +226,21 @@
       const numero = "5519998346187";
       const url = `https://wa.me/${numero}?text=${encodeURIComponent(mensagem)}`;
       window.open(url, "_blank");
+    }
+
+    function toggleDropdown() {
+      const dropdown = document.querySelector('.dropdown');
+      dropdown.classList.toggle('show');
+    }
+
+    // Fechar dropdown ao clicar fora
+    window.onclick = function(event) {
+      if (!event.target.matches('.botao')) {
+        const dropdown = document.querySelector('.dropdown');
+        if (dropdown.classList.contains('show')) {
+          dropdown.classList.remove('show');
+        }
+      }
     }
   </script>
 
