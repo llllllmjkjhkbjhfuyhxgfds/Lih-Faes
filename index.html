@@ -180,30 +180,32 @@
 
     <div class="nome">Lih Faes</div>
 
-    <!-- Links originais de serviços (mantidos) -->
+    <!-- Links originais de serviços (mensagem formal personalizada) -->
     <div class="servicos">
-      <a onclick="gerarMensagem('Furo Humanizado')">● Furo Humanizado</a>
-      <a onclick="gerarMensagem('Bodypiercing')">● Bodypiercing</a>
-      <a onclick="gerarMensagem('Cromoterapia Auricular')">● Cromoterapia Auricular</a>
-      <a onclick="gerarMensagem('Humanização de Jóias')">● Humanização de Jóias</a>
-      <a onclick="gerarMensagem('Reposicionamento de Furo')">● Reposicionamento de Furo</a>
+      <a onclick="gerarMensagemFormal('Furo Humanizado')">● Furo Humanizado</a>
+      <a onclick="gerarMensagemFormal('Bodypiercing')">● Bodypiercing</a>
+      <a onclick="gerarMensagemFormal('Cromoterapia Auricular')">● Cromoterapia Auricular</a>
+      <a onclick="gerarMensagemFormal('Humanização de Jóias')">● Humanização de Jóias</a>
+      <a onclick="gerarMensagemFormal('Reposicionamento de Furo')">● Reposicionamento de Furo</a>
     </div>
 
-    <!-- Botão com Dropdown bonito -->
+    <!-- Botão com Dropdown (mantido separado) -->
     <div class="dropdown">
       <button class="botao" onclick="toggleDropdown()">Marque seu horário!</button>
       <div id="dropdownMenu" class="dropdown-content">
-        <a onclick="gerarMensagemDropdown('Furo Humanizado')">Furo Humanizado</a>
-        <a onclick="gerarMensagemDropdown('Bodypiercing')">Bodypiercing</a>
-        <a onclick="gerarMensagemDropdown('Cromoterapia Auricular')">Cromoterapia Auricular</a>
-        <a onclick="gerarMensagemDropdown('Humanização de Jóias')">Humanização de Jóias</a>
-        <a onclick="gerarMensagemDropdown('Reposicionamento de Furo')">Reposicionamento de Furo</a>
+        <a onclick="gerarMensagem('Furo Humanizado')">Furo Humanizado</a>
+        <a onclick="gerarMensagem('Bodypiercing')">Bodypiercing</a>
+        <a onclick="gerarMensagem('Cromoterapia Auricular')">Cromoterapia Auricular</a>
+        <a onclick="gerarMensagem('Humanização de Jóias')">Humanização de Jóias</a>
+        <a onclick="gerarMensagem('Reposicionamento de Furo')">Reposicionamento de Furo</a>
       </div>
     </div>
+
   </div>
 
   <script>
-    function gerarMensagemDropdown(servico) {
+    // Mensagem formal para os links de cima
+    function gerarMensagemFormal(servico) {
       const hora = new Date().getHours();
       let saudacao = "Olá";
 
@@ -211,7 +213,23 @@
       else if (hora >= 12 && hora < 18) saudacao = "Boa tarde";
       else saudacao = "Boa noite";
 
-      const mensagem = `${saudacao}, gostaria de saber o valor do ${servico}. Poderia me informar também as datas e horários disponíveis para agendar o atendimento?`;
+      const mensagem = `${saudacao}, gostaria de saber o valor do ${servico}.`;
+
+      const numero = "5519998346187";
+      const url = `https://wa.me/${numero}?text=${encodeURIComponent(mensagem)}`;
+      window.open(url, "_blank");
+    }
+
+    // Funções do dropdown (mantidas do jeito que você gostou)
+    function gerarMensagem(servico) {
+      const hora = new Date().getHours();
+      let saudacao = "Olá";
+
+      if (hora >= 5 && hora < 12) saudacao = "Bom dia";
+      else if (hora >= 12 && hora < 18) saudacao = "Boa tarde";
+      else saudacao = "Boa noite";
+
+      const mensagem = `${saudacao}, gostaria de saber o valor do ${servico}.`;
 
       const numero = "5519998346187";
       const url = `https://wa.me/${numero}?text=${encodeURIComponent(mensagem)}`;
