@@ -84,6 +84,156 @@
       padding: 8px;
       border-radius: 8px;
       transition: background 0.3s;
+      cursor: pointer;
+    }
+
+    .servicos a:hover {
+      background: #f7dce6;
+    }
+
+    /* Botões principais */
+    .botao {
+      display: inline-block;
+      background: #d498a6;
+      color: white;
+      padding: 16px 30px;
+      border-radius: 30px;
+      font-size: 1.1em;
+      text-decoration: none;
+      margin: 15px 0;
+      animation: pulse 2s infinite;
+      transition: background 0.3s;
+      cursor: pointer;
+    }
+
+    .botao:hover {
+      background: #c27b8f;
+    }
+
+    @keyframes fadeInDown {
+      0% { transform: translateY(-20px); opacity: 0; }
+      100% { transform: translateY(0); opacity: 1; }
+    }
+
+    @keyframes fadeInUp {
+      0% { transform: translateY(20px); opacity: 0; }
+      100% { transform: translateY(0); opacity: 1; }
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+      100% { transform: scale(1); }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <div class="titulo">AGENDA</div>
+    <div class="subtitulo">aberta</div>
+
+    <img src="logo.jpg" alt="Logo Lih Faes" class="logo">
+
+    <div class="nome">Lih Faes</div>
+
+    <div class="servicos">
+      <a onclick="gerarMensagem('Furo Humanizado')">● Furo Humanizado</a>
+      <a onclick="gerarMensagem('Bodypiercing')">● Bodypiercing</a>
+      <a onclick="gerarMensagem('Cromoterapia Auricular')">● Cromoterapia Auricular</a>
+      <a onclick="gerarMensagem('Humanização de Jóias')">● Humanização de Jóias</a>
+      <a onclick="gerarMensagem('Reposicionamento de Furo')">● Reposicionamento de Furo</a>
+    </div>
+
+    <!-- Botão normal -->
+    <a href="https://wa.me/5519998346187" target="_blank" class="botao">Marque seu horário!</a>
+
+    <!-- Botão Perguntar Preço -->
+    <a onclick="gerarMensagem('todos os serviços')" class="botao">💬 Perguntar Preço</a>
+  </div>
+
+  <script>
+    function gerarMensagem(servico) {
+      const hora = new Date().getHours();
+      let saudacao = "Olá";
+
+      if (hora >= 5 && hora < 12) {
+        saudacao = "Bom dia";
+      } else if (hora >= 12 && hora < 18) {
+        saudacao = "Boa tarde";
+      } else {
+        saudacao = "Boa noite";
+      }
+
+      let mensagem = "";
+      if (servico === "todos os serviços") {
+        mensagem = `${saudacao}, gostaria de saber o preço de todos os serviços.`;
+      } else {
+        mensagem = `${saudacao}, gostaria de saber o valor do ${servico}.`;
+      }
+
+      const numero = "5519998346187";
+      const url = `https://wa.me/${numero}?text=${encodeURIComponent(mensagem)}`;
+      window.open(url, "_blank");
+    }
+  </script>
+
+</body>
+</html>    }
+
+    .subtitulo {
+      font-size: 2em;
+      font-style: italic;
+      color: #b07b8b;
+      margin-bottom: 25px;
+      animation: fadeInDown 1s ease forwards;
+      opacity: 0;
+      animation-delay: 0.3s;
+    }
+
+    .logo {
+      width: 180px;
+      height: 180px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin: 15px auto;
+      animation: fadeIn 1s ease forwards;
+      opacity: 0;
+      animation-delay: 0.6s;
+    }
+
+    .nome {
+      font-size: 1.4em;
+      font-weight: bold;
+      margin-top: 15px;
+      margin-bottom: 20px;
+      animation: fadeInUp 1s ease forwards;
+      opacity: 0;
+      animation-delay: 0.9s;
+    }
+
+    .servicos {
+      margin: 15px auto 30px;
+      font-size: 1em;
+      line-height: 2;
+      animation: fadeInUp 1s ease forwards;
+      opacity: 0;
+      animation-delay: 1.2s;
+    }
+
+    .servicos a {
+      display: block;
+      color: #5c3a46;
+      text-decoration: none;
+      font-weight: bold;
+      padding: 8px;
+      border-radius: 8px;
+      transition: background 0.3s;
     }
 
     .servicos a:hover {
@@ -158,3 +308,4 @@
 
 </body>
 </html>
+
