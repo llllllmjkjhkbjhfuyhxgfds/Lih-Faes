@@ -180,7 +180,7 @@
 
     <div class="nome">Lih Faes</div>
 
-    <!-- Links originais de serviços (mensagem formal personalizada) -->
+    <!-- Links originais de serviços (mensagem formal) -->
     <div class="servicos">
       <a onclick="gerarMensagemFormal('Furo Humanizado')">● Furo Humanizado</a>
       <a onclick="gerarMensagemFormal('Bodypiercing')">● Bodypiercing</a>
@@ -189,7 +189,7 @@
       <a onclick="gerarMensagemFormal('Reposicionamento de Furo')">● Reposicionamento de Furo</a>
     </div>
 
-    <!-- Botão com Dropdown (mantido separado) -->
+    <!-- Botão com Dropdown -->
     <div class="dropdown">
       <button class="botao" onclick="toggleDropdown()">Marque seu horário!</button>
       <div id="dropdownMenu" class="dropdown-content">
@@ -204,7 +204,7 @@
   </div>
 
   <script>
-    // Mensagem formal para os links de cima
+    // Links de cima - mensagem formal
     function gerarMensagemFormal(servico) {
       const hora = new Date().getHours();
       let saudacao = "Olá";
@@ -220,7 +220,7 @@
       window.open(url, "_blank");
     }
 
-    // Funções do dropdown (mantidas do jeito que você gostou)
+    // Dropdown botão - mantém mensagem do jeito que você gostou
     function gerarMensagem(servico) {
       const hora = new Date().getHours();
       let saudacao = "Olá";
