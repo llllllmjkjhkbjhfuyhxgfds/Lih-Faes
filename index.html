@@ -111,22 +111,29 @@
       background: #c27b8f;
     }
 
-    /* Dropdown */
+    /* Dropdown com animação */
     .dropdown {
       position: relative;
       display: inline-block;
     }
 
     .dropdown-content {
-      display: none;
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.4s ease, opacity 0.4s ease;
       position: absolute;
       background: #fff;
       min-width: 220px;
       box-shadow: 0 6px 12px rgba(0,0,0,0.1);
       border-radius: 12px;
-      overflow: hidden;
       z-index: 10;
       margin-top: 8px;
+      opacity: 0;
+    }
+
+    .dropdown.show .dropdown-content {
+      max-height: 500px; /* altura suficiente para todos os links */
+      opacity: 1;
     }
 
     .dropdown-content a {
@@ -140,10 +147,6 @@
 
     .dropdown-content a:hover {
       background: #f7dce6;
-    }
-
-    .dropdown.show .dropdown-content {
-      display: block;
     }
 
     @keyframes fadeInDown {
@@ -218,9 +221,9 @@
 
       let mensagem = "";
       if (servico === "todos os serviços") {
-        mensagem = `${saudacao}, gostaria de saber o preço de todos os serviços.`;
+        mensagem = `${saudacao}, gostaria de saber o preço de todos os serviços e uma data/hora para agendar meu horário.`;
       } else {
-        mensagem = `${saudacao}, gostaria de saber o valor do ${servico}.`;
+        mensagem = `${saudacao}, gostaria de saber o valor do ${servico} e uma data/hora para agendar meu horário.`;
       }
 
       const numero = "5519998346187";
