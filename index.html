@@ -91,7 +91,13 @@
       background: #f7dce6;
     }
 
-    /* Botões principais */
+    /* Botão com dropdown */
+    .dropdown {
+      position: relative;
+      display: inline-block;
+      margin: 15px 0;
+    }
+
     .botao {
       display: inline-block;
       background: #d498a6;
@@ -100,7 +106,6 @@
       border-radius: 30px;
       font-size: 1.1em;
       text-decoration: none;
-      margin: 15px 0;
       animation: pulse 2s infinite;
       transition: background 0.3s;
       cursor: pointer;
@@ -109,12 +114,6 @@
 
     .botao:hover {
       background: #c27b8f;
-    }
-
-    /* Dropdown com animação */
-    .dropdown {
-      position: relative;
-      display: inline-block;
     }
 
     .dropdown-content {
@@ -132,7 +131,7 @@
     }
 
     .dropdown.show .dropdown-content {
-      max-height: 500px; /* altura suficiente para todos os links */
+      max-height: 500px;
       opacity: 1;
     }
 
@@ -169,7 +168,6 @@
       50% { transform: scale(1.05); }
       100% { transform: scale(1); }
     }
-
   </style>
 </head>
 <body>
@@ -182,6 +180,7 @@
 
     <div class="nome">Lih Faes</div>
 
+    <!-- Links originais de serviços (mantidos) -->
     <div class="servicos">
       <a onclick="gerarMensagem('Furo Humanizado')">● Furo Humanizado</a>
       <a onclick="gerarMensagem('Bodypiercing')">● Bodypiercing</a>
@@ -190,41 +189,29 @@
       <a onclick="gerarMensagem('Reposicionamento de Furo')">● Reposicionamento de Furo</a>
     </div>
 
-    <!-- Botão com dropdown -->
+    <!-- Botão com Dropdown bonito -->
     <div class="dropdown">
       <button class="botao" onclick="toggleDropdown()">Marque seu horário!</button>
       <div id="dropdownMenu" class="dropdown-content">
-        <a onclick="gerarMensagem('Furo Humanizado')">Furo Humanizado</a>
-        <a onclick="gerarMensagem('Bodypiercing')">Bodypiercing</a>
-        <a onclick="gerarMensagem('Cromoterapia Auricular')">Cromoterapia Auricular</a>
-        <a onclick="gerarMensagem('Humanização de Jóias')">Humanização de Jóias</a>
-        <a onclick="gerarMensagem('Reposicionamento de Furo')">Reposicionamento de Furo</a>
+        <a onclick="gerarMensagemDropdown('Furo Humanizado')">Furo Humanizado</a>
+        <a onclick="gerarMensagemDropdown('Bodypiercing')">Bodypiercing</a>
+        <a onclick="gerarMensagemDropdown('Cromoterapia Auricular')">Cromoterapia Auricular</a>
+        <a onclick="gerarMensagemDropdown('Humanização de Jóias')">Humanização de Jóias</a>
+        <a onclick="gerarMensagemDropdown('Reposicionamento de Furo')">Reposicionamento de Furo</a>
       </div>
     </div>
-
-    <!-- Botão Perguntar Preço -->
-    <a onclick="gerarMensagem('todos os serviços')" class="botao">💬 Perguntar Preço</a>
   </div>
 
   <script>
-    function gerarMensagem(servico) {
+    function gerarMensagemDropdown(servico) {
       const hora = new Date().getHours();
       let saudacao = "Olá";
 
-      if (hora >= 5 && hora < 12) {
-        saudacao = "Bom dia";
-      } else if (hora >= 12 && hora < 18) {
-        saudacao = "Boa tarde";
-      } else {
-        saudacao = "Boa noite";
-      }
+      if (hora >= 5 && hora < 12) saudacao = "Bom dia";
+      else if (hora >= 12 && hora < 18) saudacao = "Boa tarde";
+      else saudacao = "Boa noite";
 
-      let mensagem = "";
-      if (servico === "todos os serviços") {
-        mensagem = `${saudacao}, gostaria de saber os valores de todos os serviços disponíveis. Poderia me informar também as datas e horários disponíveis para agendar?`;
-      } else {
-        mensagem = `${saudacao}, gostaria de saber o valor do ${servico}. Poderia me informar também as datas e horários disponíveis para agendar o atendimento?`;
-      }
+      const mensagem = `${saudacao}, gostaria de saber o valor do ${servico}. Poderia me informar também as datas e horários disponíveis para agendar o atendimento?`;
 
       const numero = "5519998346187";
       const url = `https://wa.me/${numero}?text=${encodeURIComponent(mensagem)}`;
@@ -232,17 +219,13 @@
     }
 
     function toggleDropdown() {
-      const dropdown = document.querySelector('.dropdown');
-      dropdown.classList.toggle('show');
+      document.querySelector('.dropdown').classList.toggle('show');
     }
 
-    // Fechar dropdown ao clicar fora
     window.onclick = function(event) {
       if (!event.target.matches('.botao')) {
         const dropdown = document.querySelector('.dropdown');
-        if (dropdown.classList.contains('show')) {
-          dropdown.classList.remove('show');
-        }
+        if (dropdown.classList.contains('show')) dropdown.classList.remove('show');
       }
     }
   </script>
